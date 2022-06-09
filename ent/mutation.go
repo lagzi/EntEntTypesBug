@@ -435,19 +435,19 @@ func (m *PictureMutation) ResetEdge(name string) error {
 // UserMutation represents an operation that mutates the User nodes in the graph.
 type UserMutation struct {
 	config
-	op                                                                                                Op
-	typ                                                                                               string
-	id                                                                                                *int
-	age                                                                                               *int
-	addage                                                                                            *int
-	name                                                                                              *string
-	clearedFields                                                                                     map[string]struct{}
-	user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle        map[int]struct{}
-	removeduser_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle map[int]struct{}
-	cleareduser_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle bool
-	done                                                                                              bool
-	oldValue                                                                                          func(context.Context) (*User, error)
-	predicates                                                                                        []predicate.User
+	op                   Op
+	typ                  string
+	id                   *int
+	age                  *int
+	addage               *int
+	name                 *string
+	clearedFields        map[string]struct{}
+	usertopicedge        map[int]struct{}
+	removedusertopicedge map[int]struct{}
+	clearedusertopicedge bool
+	done                 bool
+	oldValue             func(context.Context) (*User, error)
+	predicates           []predicate.User
 }
 
 var _ ent.Mutation = (*UserMutation)(nil)
@@ -640,58 +640,58 @@ func (m *UserMutation) ResetName() {
 	m.name = nil
 }
 
-// AddUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs adds the "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" edge to the Picture entity by ids.
-func (m *UserMutation) AddUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs(ids ...int) {
-	if m.user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle == nil {
-		m.user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle = make(map[int]struct{})
+// AddUsertopicedgeIDs adds the "usertopicedge" edge to the Picture entity by ids.
+func (m *UserMutation) AddUsertopicedgeIDs(ids ...int) {
+	if m.usertopicedge == nil {
+		m.usertopicedge = make(map[int]struct{})
 	}
 	for i := range ids {
-		m.user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle[ids[i]] = struct{}{}
+		m.usertopicedge[ids[i]] = struct{}{}
 	}
 }
 
-// ClearUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle clears the "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" edge to the Picture entity.
-func (m *UserMutation) ClearUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle() {
-	m.cleareduser_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle = true
+// ClearUsertopicedge clears the "usertopicedge" edge to the Picture entity.
+func (m *UserMutation) ClearUsertopicedge() {
+	m.clearedusertopicedge = true
 }
 
-// UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleCleared reports if the "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" edge to the Picture entity was cleared.
-func (m *UserMutation) UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleCleared() bool {
-	return m.cleareduser_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle
+// UsertopicedgeCleared reports if the "usertopicedge" edge to the Picture entity was cleared.
+func (m *UserMutation) UsertopicedgeCleared() bool {
+	return m.clearedusertopicedge
 }
 
-// RemoveUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs removes the "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" edge to the Picture entity by IDs.
-func (m *UserMutation) RemoveUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs(ids ...int) {
-	if m.removeduser_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle == nil {
-		m.removeduser_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle = make(map[int]struct{})
+// RemoveUsertopicedgeIDs removes the "usertopicedge" edge to the Picture entity by IDs.
+func (m *UserMutation) RemoveUsertopicedgeIDs(ids ...int) {
+	if m.removedusertopicedge == nil {
+		m.removedusertopicedge = make(map[int]struct{})
 	}
 	for i := range ids {
-		delete(m.user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle, ids[i])
-		m.removeduser_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle[ids[i]] = struct{}{}
+		delete(m.usertopicedge, ids[i])
+		m.removedusertopicedge[ids[i]] = struct{}{}
 	}
 }
 
-// RemovedUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle returns the removed IDs of the "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" edge to the Picture entity.
-func (m *UserMutation) RemovedUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs() (ids []int) {
-	for id := range m.removeduser_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle {
+// RemovedUsertopicedge returns the removed IDs of the "usertopicedge" edge to the Picture entity.
+func (m *UserMutation) RemovedUsertopicedgeIDs() (ids []int) {
+	for id := range m.removedusertopicedge {
 		ids = append(ids, id)
 	}
 	return
 }
 
-// UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs returns the "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" edge IDs in the mutation.
-func (m *UserMutation) UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs() (ids []int) {
-	for id := range m.user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle {
+// UsertopicedgeIDs returns the "usertopicedge" edge IDs in the mutation.
+func (m *UserMutation) UsertopicedgeIDs() (ids []int) {
+	for id := range m.usertopicedge {
 		ids = append(ids, id)
 	}
 	return
 }
 
-// ResetUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle resets all changes to the "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" edge.
-func (m *UserMutation) ResetUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle() {
-	m.user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle = nil
-	m.cleareduser_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle = false
-	m.removeduser_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle = nil
+// ResetUsertopicedge resets all changes to the "usertopicedge" edge.
+func (m *UserMutation) ResetUsertopicedge() {
+	m.usertopicedge = nil
+	m.clearedusertopicedge = false
+	m.removedusertopicedge = nil
 }
 
 // Where appends a list predicates to the UserMutation builder.
@@ -845,8 +845,8 @@ func (m *UserMutation) ResetField(name string) error {
 // AddedEdges returns all edge names that were set/added in this mutation.
 func (m *UserMutation) AddedEdges() []string {
 	edges := make([]string, 0, 1)
-	if m.user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle != nil {
-		edges = append(edges, user.EdgeUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle)
+	if m.usertopicedge != nil {
+		edges = append(edges, user.EdgeUsertopicedge)
 	}
 	return edges
 }
@@ -855,9 +855,9 @@ func (m *UserMutation) AddedEdges() []string {
 // name in this mutation.
 func (m *UserMutation) AddedIDs(name string) []ent.Value {
 	switch name {
-	case user.EdgeUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle:
-		ids := make([]ent.Value, 0, len(m.user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle))
-		for id := range m.user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle {
+	case user.EdgeUsertopicedge:
+		ids := make([]ent.Value, 0, len(m.usertopicedge))
+		for id := range m.usertopicedge {
 			ids = append(ids, id)
 		}
 		return ids
@@ -868,8 +868,8 @@ func (m *UserMutation) AddedIDs(name string) []ent.Value {
 // RemovedEdges returns all edge names that were removed in this mutation.
 func (m *UserMutation) RemovedEdges() []string {
 	edges := make([]string, 0, 1)
-	if m.removeduser_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle != nil {
-		edges = append(edges, user.EdgeUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle)
+	if m.removedusertopicedge != nil {
+		edges = append(edges, user.EdgeUsertopicedge)
 	}
 	return edges
 }
@@ -878,9 +878,9 @@ func (m *UserMutation) RemovedEdges() []string {
 // the given name in this mutation.
 func (m *UserMutation) RemovedIDs(name string) []ent.Value {
 	switch name {
-	case user.EdgeUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle:
-		ids := make([]ent.Value, 0, len(m.removeduser_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle))
-		for id := range m.removeduser_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle {
+	case user.EdgeUsertopicedge:
+		ids := make([]ent.Value, 0, len(m.removedusertopicedge))
+		for id := range m.removedusertopicedge {
 			ids = append(ids, id)
 		}
 		return ids
@@ -891,8 +891,8 @@ func (m *UserMutation) RemovedIDs(name string) []ent.Value {
 // ClearedEdges returns all edge names that were cleared in this mutation.
 func (m *UserMutation) ClearedEdges() []string {
 	edges := make([]string, 0, 1)
-	if m.cleareduser_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle {
-		edges = append(edges, user.EdgeUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle)
+	if m.clearedusertopicedge {
+		edges = append(edges, user.EdgeUsertopicedge)
 	}
 	return edges
 }
@@ -901,8 +901,8 @@ func (m *UserMutation) ClearedEdges() []string {
 // was cleared in this mutation.
 func (m *UserMutation) EdgeCleared(name string) bool {
 	switch name {
-	case user.EdgeUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle:
-		return m.cleareduser_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle
+	case user.EdgeUsertopicedge:
+		return m.clearedusertopicedge
 	}
 	return false
 }
@@ -919,8 +919,8 @@ func (m *UserMutation) ClearEdge(name string) error {
 // It returns an error if the edge is not defined in the schema.
 func (m *UserMutation) ResetEdge(name string) error {
 	switch name {
-	case user.EdgeUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle:
-		m.ResetUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle()
+	case user.EdgeUsertopicedge:
+		m.ResetUsertopicedge()
 		return nil
 	}
 	return fmt.Errorf("unknown User edge %s", name)

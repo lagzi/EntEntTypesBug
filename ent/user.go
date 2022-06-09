@@ -26,20 +26,20 @@ type User struct {
 
 // UserEdges holds the relations/edges for other nodes in the graph.
 type UserEdges struct {
-	// UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle holds the value of the user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle edge.
-	UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle []*Picture `json:"user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle,omitempty"`
+	// Usertopicedge holds the value of the usertopicedge edge.
+	Usertopicedge []*Picture `json:"usertopicedge,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
 	loadedTypes [1]bool
 }
 
-// UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleOrErr returns the UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle value or an error if the edge
+// UsertopicedgeOrErr returns the Usertopicedge value or an error if the edge
 // was not loaded in eager-loading.
-func (e UserEdges) UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleOrErr() ([]*Picture, error) {
+func (e UserEdges) UsertopicedgeOrErr() ([]*Picture, error) {
 	if e.loadedTypes[0] {
-		return e.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle, nil
+		return e.Usertopicedge, nil
 	}
-	return nil, &NotLoadedError{edge: "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle"}
+	return nil, &NotLoadedError{edge: "usertopicedge"}
 }
 
 // scanValues returns the types for scanning values from sql.Rows.
@@ -89,9 +89,9 @@ func (u *User) assignValues(columns []string, values []interface{}) error {
 	return nil
 }
 
-// QueryUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle queries the "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" edge of the User entity.
-func (u *User) QueryUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle() *PictureQuery {
-	return (&UserClient{config: u.config}).QueryUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle(u)
+// QueryUsertopicedge queries the "usertopicedge" edge of the User entity.
+func (u *User) QueryUsertopicedge() *PictureQuery {
+	return (&UserClient{config: u.config}).QueryUsertopicedge(u)
 }
 
 // Update returns a builder for updating this User.

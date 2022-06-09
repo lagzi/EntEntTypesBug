@@ -32,19 +32,19 @@ func (uc *UserCreate) SetName(s string) *UserCreate {
 	return uc
 }
 
-// AddUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs adds the "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" edge to the Picture entity by IDs.
-func (uc *UserCreate) AddUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs(ids ...int) *UserCreate {
-	uc.mutation.AddUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs(ids...)
+// AddUsertopicedgeIDs adds the "usertopicedge" edge to the Picture entity by IDs.
+func (uc *UserCreate) AddUsertopicedgeIDs(ids ...int) *UserCreate {
+	uc.mutation.AddUsertopicedgeIDs(ids...)
 	return uc
 }
 
-// AddUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle adds the "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" edges to the Picture entity.
-func (uc *UserCreate) AddUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle(p ...*Picture) *UserCreate {
+// AddUsertopicedge adds the "usertopicedge" edges to the Picture entity.
+func (uc *UserCreate) AddUsertopicedge(p ...*Picture) *UserCreate {
 	ids := make([]int, len(p))
 	for i := range p {
 		ids[i] = p[i].ID
 	}
-	return uc.AddUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs(ids...)
+	return uc.AddUsertopicedgeIDs(ids...)
 }
 
 // Mutation returns the UserMutation object of the builder.
@@ -172,12 +172,12 @@ func (uc *UserCreate) createSpec() (*User, *sqlgraph.CreateSpec) {
 		})
 		_node.Name = value
 	}
-	if nodes := uc.mutation.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs(); len(nodes) > 0 {
+	if nodes := uc.mutation.UsertopicedgeIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: false,
-			Table:   user.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleTable,
-			Columns: user.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandlePrimaryKey,
+			Table:   user.UsertopicedgeTable,
+			Columns: user.UsertopicedgePrimaryKey,
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: &sqlgraph.FieldSpec{

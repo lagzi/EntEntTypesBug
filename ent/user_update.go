@@ -47,19 +47,19 @@ func (uu *UserUpdate) SetName(s string) *UserUpdate {
 	return uu
 }
 
-// AddUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs adds the "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" edge to the Picture entity by IDs.
-func (uu *UserUpdate) AddUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs(ids ...int) *UserUpdate {
-	uu.mutation.AddUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs(ids...)
+// AddUsertopicedgeIDs adds the "usertopicedge" edge to the Picture entity by IDs.
+func (uu *UserUpdate) AddUsertopicedgeIDs(ids ...int) *UserUpdate {
+	uu.mutation.AddUsertopicedgeIDs(ids...)
 	return uu
 }
 
-// AddUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle adds the "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" edges to the Picture entity.
-func (uu *UserUpdate) AddUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle(p ...*Picture) *UserUpdate {
+// AddUsertopicedge adds the "usertopicedge" edges to the Picture entity.
+func (uu *UserUpdate) AddUsertopicedge(p ...*Picture) *UserUpdate {
 	ids := make([]int, len(p))
 	for i := range p {
 		ids[i] = p[i].ID
 	}
-	return uu.AddUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs(ids...)
+	return uu.AddUsertopicedgeIDs(ids...)
 }
 
 // Mutation returns the UserMutation object of the builder.
@@ -67,25 +67,25 @@ func (uu *UserUpdate) Mutation() *UserMutation {
 	return uu.mutation
 }
 
-// ClearUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle clears all "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" edges to the Picture entity.
-func (uu *UserUpdate) ClearUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle() *UserUpdate {
-	uu.mutation.ClearUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle()
+// ClearUsertopicedge clears all "usertopicedge" edges to the Picture entity.
+func (uu *UserUpdate) ClearUsertopicedge() *UserUpdate {
+	uu.mutation.ClearUsertopicedge()
 	return uu
 }
 
-// RemoveUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs removes the "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" edge to Picture entities by IDs.
-func (uu *UserUpdate) RemoveUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs(ids ...int) *UserUpdate {
-	uu.mutation.RemoveUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs(ids...)
+// RemoveUsertopicedgeIDs removes the "usertopicedge" edge to Picture entities by IDs.
+func (uu *UserUpdate) RemoveUsertopicedgeIDs(ids ...int) *UserUpdate {
+	uu.mutation.RemoveUsertopicedgeIDs(ids...)
 	return uu
 }
 
-// RemoveUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle removes "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" edges to Picture entities.
-func (uu *UserUpdate) RemoveUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle(p ...*Picture) *UserUpdate {
+// RemoveUsertopicedge removes "usertopicedge" edges to Picture entities.
+func (uu *UserUpdate) RemoveUsertopicedge(p ...*Picture) *UserUpdate {
 	ids := make([]int, len(p))
 	for i := range p {
 		ids[i] = p[i].ID
 	}
-	return uu.RemoveUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs(ids...)
+	return uu.RemoveUsertopicedgeIDs(ids...)
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
@@ -181,12 +181,12 @@ func (uu *UserUpdate) sqlSave(ctx context.Context) (n int, err error) {
 			Column: user.FieldName,
 		})
 	}
-	if uu.mutation.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleCleared() {
+	if uu.mutation.UsertopicedgeCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: false,
-			Table:   user.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleTable,
-			Columns: user.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandlePrimaryKey,
+			Table:   user.UsertopicedgeTable,
+			Columns: user.UsertopicedgePrimaryKey,
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: &sqlgraph.FieldSpec{
@@ -197,12 +197,12 @@ func (uu *UserUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := uu.mutation.RemovedUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs(); len(nodes) > 0 && !uu.mutation.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleCleared() {
+	if nodes := uu.mutation.RemovedUsertopicedgeIDs(); len(nodes) > 0 && !uu.mutation.UsertopicedgeCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: false,
-			Table:   user.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleTable,
-			Columns: user.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandlePrimaryKey,
+			Table:   user.UsertopicedgeTable,
+			Columns: user.UsertopicedgePrimaryKey,
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: &sqlgraph.FieldSpec{
@@ -216,12 +216,12 @@ func (uu *UserUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := uu.mutation.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs(); len(nodes) > 0 {
+	if nodes := uu.mutation.UsertopicedgeIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: false,
-			Table:   user.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleTable,
-			Columns: user.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandlePrimaryKey,
+			Table:   user.UsertopicedgeTable,
+			Columns: user.UsertopicedgePrimaryKey,
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: &sqlgraph.FieldSpec{
@@ -273,19 +273,19 @@ func (uuo *UserUpdateOne) SetName(s string) *UserUpdateOne {
 	return uuo
 }
 
-// AddUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs adds the "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" edge to the Picture entity by IDs.
-func (uuo *UserUpdateOne) AddUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs(ids ...int) *UserUpdateOne {
-	uuo.mutation.AddUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs(ids...)
+// AddUsertopicedgeIDs adds the "usertopicedge" edge to the Picture entity by IDs.
+func (uuo *UserUpdateOne) AddUsertopicedgeIDs(ids ...int) *UserUpdateOne {
+	uuo.mutation.AddUsertopicedgeIDs(ids...)
 	return uuo
 }
 
-// AddUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle adds the "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" edges to the Picture entity.
-func (uuo *UserUpdateOne) AddUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle(p ...*Picture) *UserUpdateOne {
+// AddUsertopicedge adds the "usertopicedge" edges to the Picture entity.
+func (uuo *UserUpdateOne) AddUsertopicedge(p ...*Picture) *UserUpdateOne {
 	ids := make([]int, len(p))
 	for i := range p {
 		ids[i] = p[i].ID
 	}
-	return uuo.AddUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs(ids...)
+	return uuo.AddUsertopicedgeIDs(ids...)
 }
 
 // Mutation returns the UserMutation object of the builder.
@@ -293,25 +293,25 @@ func (uuo *UserUpdateOne) Mutation() *UserMutation {
 	return uuo.mutation
 }
 
-// ClearUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle clears all "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" edges to the Picture entity.
-func (uuo *UserUpdateOne) ClearUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle() *UserUpdateOne {
-	uuo.mutation.ClearUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle()
+// ClearUsertopicedge clears all "usertopicedge" edges to the Picture entity.
+func (uuo *UserUpdateOne) ClearUsertopicedge() *UserUpdateOne {
+	uuo.mutation.ClearUsertopicedge()
 	return uuo
 }
 
-// RemoveUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs removes the "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" edge to Picture entities by IDs.
-func (uuo *UserUpdateOne) RemoveUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs(ids ...int) *UserUpdateOne {
-	uuo.mutation.RemoveUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs(ids...)
+// RemoveUsertopicedgeIDs removes the "usertopicedge" edge to Picture entities by IDs.
+func (uuo *UserUpdateOne) RemoveUsertopicedgeIDs(ids ...int) *UserUpdateOne {
+	uuo.mutation.RemoveUsertopicedgeIDs(ids...)
 	return uuo
 }
 
-// RemoveUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle removes "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" edges to Picture entities.
-func (uuo *UserUpdateOne) RemoveUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle(p ...*Picture) *UserUpdateOne {
+// RemoveUsertopicedge removes "usertopicedge" edges to Picture entities.
+func (uuo *UserUpdateOne) RemoveUsertopicedge(p ...*Picture) *UserUpdateOne {
 	ids := make([]int, len(p))
 	for i := range p {
 		ids[i] = p[i].ID
 	}
-	return uuo.RemoveUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs(ids...)
+	return uuo.RemoveUsertopicedgeIDs(ids...)
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
@@ -437,12 +437,12 @@ func (uuo *UserUpdateOne) sqlSave(ctx context.Context) (_node *User, err error) 
 			Column: user.FieldName,
 		})
 	}
-	if uuo.mutation.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleCleared() {
+	if uuo.mutation.UsertopicedgeCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: false,
-			Table:   user.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleTable,
-			Columns: user.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandlePrimaryKey,
+			Table:   user.UsertopicedgeTable,
+			Columns: user.UsertopicedgePrimaryKey,
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: &sqlgraph.FieldSpec{
@@ -453,12 +453,12 @@ func (uuo *UserUpdateOne) sqlSave(ctx context.Context) (_node *User, err error) 
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := uuo.mutation.RemovedUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs(); len(nodes) > 0 && !uuo.mutation.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleCleared() {
+	if nodes := uuo.mutation.RemovedUsertopicedgeIDs(); len(nodes) > 0 && !uuo.mutation.UsertopicedgeCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: false,
-			Table:   user.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleTable,
-			Columns: user.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandlePrimaryKey,
+			Table:   user.UsertopicedgeTable,
+			Columns: user.UsertopicedgePrimaryKey,
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: &sqlgraph.FieldSpec{
@@ -472,12 +472,12 @@ func (uuo *UserUpdateOne) sqlSave(ctx context.Context) (_node *User, err error) 
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := uuo.mutation.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleIDs(); len(nodes) > 0 {
+	if nodes := uuo.mutation.UsertopicedgeIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: false,
-			Table:   user.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleTable,
-			Columns: user.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandlePrimaryKey,
+			Table:   user.UsertopicedgeTable,
+			Columns: user.UsertopicedgePrimaryKey,
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: &sqlgraph.FieldSpec{

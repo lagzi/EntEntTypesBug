@@ -11,15 +11,15 @@ const (
 	FieldAge = "age"
 	// FieldName holds the string denoting the name field in the database.
 	FieldName = "name"
-	// EdgeUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle holds the string denoting the user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle edge name in mutations.
-	EdgeUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle = "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle"
+	// EdgeUsertopicedge holds the string denoting the usertopicedge edge name in mutations.
+	EdgeUsertopicedge = "usertopicedge"
 	// Table holds the table name of the user in the database.
 	Table = "users"
-	// UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleTable is the table that holds the user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle relation/edge. The primary key declared below.
-	UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleTable = "user_user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle"
-	// UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleInverseTable is the table name for the Picture entity.
+	// UsertopicedgeTable is the table that holds the usertopicedge relation/edge. The primary key declared below.
+	UsertopicedgeTable = "user_usertopicedge"
+	// UsertopicedgeInverseTable is the table name for the Picture entity.
 	// It exists in this package in order to avoid circular dependency with the "picture" package.
-	UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleInverseTable = "pictures"
+	UsertopicedgeInverseTable = "pictures"
 )
 
 // Columns holds all SQL columns for user fields.
@@ -30,9 +30,9 @@ var Columns = []string{
 }
 
 var (
-	// UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandlePrimaryKey and UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleColumn2 are the table columns denoting the
-	// primary key for the user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle relation (M2M).
-	UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandlePrimaryKey = []string{"user_id", "picture_id"}
+	// UsertopicedgePrimaryKey and UsertopicedgeColumn2 are the table columns denoting the
+	// primary key for the usertopicedge relation (M2M).
+	UsertopicedgePrimaryKey = []string{"user_id", "picture_id"}
 )
 
 // ValidColumn reports if the column name is valid (part of the table columns).

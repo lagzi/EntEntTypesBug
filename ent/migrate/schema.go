@@ -31,26 +31,26 @@ var (
 		Columns:    UsersColumns,
 		PrimaryKey: []*schema.Column{UsersColumns[0]},
 	}
-	// UserUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleColumns holds the columns for the "user_user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" table.
-	UserUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleColumns = []*schema.Column{
+	// UserUsertopicedgeColumns holds the columns for the "user_usertopicedge" table.
+	UserUsertopicedgeColumns = []*schema.Column{
 		{Name: "user_id", Type: field.TypeInt},
 		{Name: "picture_id", Type: field.TypeInt},
 	}
-	// UserUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleTable holds the schema information for the "user_user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" table.
-	UserUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleTable = &schema.Table{
-		Name:       "user_user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle",
-		Columns:    UserUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleColumns,
-		PrimaryKey: []*schema.Column{UserUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleColumns[0], UserUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleColumns[1]},
+	// UserUsertopicedgeTable holds the schema information for the "user_usertopicedge" table.
+	UserUsertopicedgeTable = &schema.Table{
+		Name:       "user_usertopicedge",
+		Columns:    UserUsertopicedgeColumns,
+		PrimaryKey: []*schema.Column{UserUsertopicedgeColumns[0], UserUsertopicedgeColumns[1]},
 		ForeignKeys: []*schema.ForeignKey{
 			{
-				Symbol:     "user_user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle_user_id",
-				Columns:    []*schema.Column{UserUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleColumns[0]},
+				Symbol:     "user_usertopicedge_user_id",
+				Columns:    []*schema.Column{UserUsertopicedgeColumns[0]},
 				RefColumns: []*schema.Column{UsersColumns[0]},
 				OnDelete:   schema.Cascade,
 			},
 			{
-				Symbol:     "user_user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle_picture_id",
-				Columns:    []*schema.Column{UserUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleColumns[1]},
+				Symbol:     "user_usertopicedge_picture_id",
+				Columns:    []*schema.Column{UserUsertopicedgeColumns[1]},
 				RefColumns: []*schema.Column{PicturesColumns[0]},
 				OnDelete:   schema.Cascade,
 			},
@@ -60,11 +60,11 @@ var (
 	Tables = []*schema.Table{
 		PicturesTable,
 		UsersTable,
-		UserUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleTable,
+		UserUsertopicedgeTable,
 	}
 )
 
 func init() {
-	UserUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleTable.ForeignKeys[0].RefTable = UsersTable
-	UserUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleTable.ForeignKeys[1].RefTable = PicturesTable
+	UserUsertopicedgeTable.ForeignKeys[0].RefTable = UsersTable
+	UserUsertopicedgeTable.ForeignKeys[1].RefTable = PicturesTable
 }

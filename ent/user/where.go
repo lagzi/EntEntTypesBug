@@ -292,25 +292,25 @@ func NameContainsFold(v string) predicate.User {
 	})
 }
 
-// HasUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle applies the HasEdge predicate on the "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" edge.
-func HasUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle() predicate.User {
+// HasUsertopicedge applies the HasEdge predicate on the "usertopicedge" edge.
+func HasUsertopicedge() predicate.User {
 	return predicate.User(func(s *sql.Selector) {
 		step := sqlgraph.NewStep(
 			sqlgraph.From(Table, FieldID),
-			sqlgraph.To(UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleTable, FieldID),
-			sqlgraph.Edge(sqlgraph.M2M, false, UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleTable, UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandlePrimaryKey...),
+			sqlgraph.To(UsertopicedgeTable, FieldID),
+			sqlgraph.Edge(sqlgraph.M2M, false, UsertopicedgeTable, UsertopicedgePrimaryKey...),
 		)
 		sqlgraph.HasNeighbors(s, step)
 	})
 }
 
-// HasUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleWith applies the HasEdge predicate on the "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" edge with a given conditions (other predicates).
-func HasUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleWith(preds ...predicate.Picture) predicate.User {
+// HasUsertopicedgeWith applies the HasEdge predicate on the "usertopicedge" edge with a given conditions (other predicates).
+func HasUsertopicedgeWith(preds ...predicate.Picture) predicate.User {
 	return predicate.User(func(s *sql.Selector) {
 		step := sqlgraph.NewStep(
 			sqlgraph.From(Table, FieldID),
-			sqlgraph.To(UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleInverseTable, FieldID),
-			sqlgraph.Edge(sqlgraph.M2M, false, UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleTable, UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandlePrimaryKey...),
+			sqlgraph.To(UsertopicedgeInverseTable, FieldID),
+			sqlgraph.Edge(sqlgraph.M2M, false, UsertopicedgeTable, UsertopicedgePrimaryKey...),
 		)
 		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
 			for _, p := range preds {

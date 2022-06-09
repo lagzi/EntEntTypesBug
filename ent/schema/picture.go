@@ -7,9 +7,8 @@ import (
 )
 
 const (
-	UserToPictureEdge = "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle"
-	//UserToPictureEdge = "short_edge"
-	pictureEdge = "picture"
+	UserToPictureEdge = "usertopicedge"
+	pictureEdge       = "picture"
 )
 
 // User holds the schema definition for the User entity.

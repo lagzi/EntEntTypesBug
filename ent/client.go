@@ -321,15 +321,15 @@ func (c *UserClient) GetX(ctx context.Context, id int) *User {
 	return obj
 }
 
-// QueryUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle queries the user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle edge of a User.
-func (c *UserClient) QueryUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle(u *User) *PictureQuery {
+// QueryUsertopicedge queries the usertopicedge edge of a User.
+func (c *UserClient) QueryUsertopicedge(u *User) *PictureQuery {
 	query := &PictureQuery{config: c.config}
 	query.path = func(ctx context.Context) (fromV *sql.Selector, _ error) {
 		id := u.ID
 		step := sqlgraph.NewStep(
 			sqlgraph.From(user.Table, user.FieldID, id),
 			sqlgraph.To(picture.Table, picture.FieldID),
-			sqlgraph.Edge(sqlgraph.M2M, false, user.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleTable, user.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandlePrimaryKey...),
+			sqlgraph.Edge(sqlgraph.M2M, false, user.UsertopicedgeTable, user.UsertopicedgePrimaryKey...),
 		)
 		fromV = sqlgraph.Neighbors(u.driver.Dialect(), step)
 		return fromV, nil

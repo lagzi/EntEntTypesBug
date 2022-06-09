@@ -26,7 +26,7 @@ type UserQuery struct {
 	fields     []string
 	predicates []predicate.User
 	// eager-loading edges.
-	withUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle *PictureQuery
+	withUsertopicedge *PictureQuery
 	// intermediate query (i.e. traversal path).
 	sql  *sql.Selector
 	path func(context.Context) (*sql.Selector, error)
@@ -63,8 +63,8 @@ func (uq *UserQuery) Order(o ...OrderFunc) *UserQuery {
 	return uq
 }
 
-// QueryUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle chains the current query on the "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" edge.
-func (uq *UserQuery) QueryUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle() *PictureQuery {
+// QueryUsertopicedge chains the current query on the "usertopicedge" edge.
+func (uq *UserQuery) QueryUsertopicedge() *PictureQuery {
 	query := &PictureQuery{config: uq.config}
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
 		if err := uq.prepareQuery(ctx); err != nil {
@@ -77,7 +77,7 @@ func (uq *UserQuery) QueryUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPo
 		step := sqlgraph.NewStep(
 			sqlgraph.From(user.Table, user.FieldID, selector),
 			sqlgraph.To(picture.Table, picture.FieldID),
-			sqlgraph.Edge(sqlgraph.M2M, false, user.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleTable, user.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandlePrimaryKey...),
+			sqlgraph.Edge(sqlgraph.M2M, false, user.UsertopicedgeTable, user.UsertopicedgePrimaryKey...),
 		)
 		fromU = sqlgraph.SetNeighbors(uq.driver.Dialect(), step)
 		return fromU, nil
@@ -261,12 +261,12 @@ func (uq *UserQuery) Clone() *UserQuery {
 		return nil
 	}
 	return &UserQuery{
-		config:     uq.config,
-		limit:      uq.limit,
-		offset:     uq.offset,
-		order:      append([]OrderFunc{}, uq.order...),
-		predicates: append([]predicate.User{}, uq.predicates...),
-		withUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle: uq.withUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle.Clone(),
+		config:            uq.config,
+		limit:             uq.limit,
+		offset:            uq.offset,
+		order:             append([]OrderFunc{}, uq.order...),
+		predicates:        append([]predicate.User{}, uq.predicates...),
+		withUsertopicedge: uq.withUsertopicedge.Clone(),
 		// clone intermediate query.
 		sql:    uq.sql.Clone(),
 		path:   uq.path,
@@ -274,14 +274,14 @@ func (uq *UserQuery) Clone() *UserQuery {
 	}
 }
 
-// WithUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle tells the query-builder to eager-load the nodes that are connected to
-// the "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" edge. The optional arguments are used to configure the query builder of the edge.
-func (uq *UserQuery) WithUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle(opts ...func(*PictureQuery)) *UserQuery {
+// WithUsertopicedge tells the query-builder to eager-load the nodes that are connected to
+// the "usertopicedge" edge. The optional arguments are used to configure the query builder of the edge.
+func (uq *UserQuery) WithUsertopicedge(opts ...func(*PictureQuery)) *UserQuery {
 	query := &PictureQuery{config: uq.config}
 	for _, opt := range opts {
 		opt(query)
 	}
-	uq.withUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle = query
+	uq.withUsertopicedge = query
 	return uq
 }
 
@@ -356,7 +356,7 @@ func (uq *UserQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*User, e
 		nodes       = []*User{}
 		_spec       = uq.querySpec()
 		loadedTypes = [1]bool{
-			uq.withUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle != nil,
+			uq.withUsertopicedge != nil,
 		}
 	)
 	_spec.ScanValues = func(columns []string) ([]interface{}, error) {
@@ -378,21 +378,21 @@ func (uq *UserQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*User, e
 		return nodes, nil
 	}
 
-	if query := uq.withUserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle; query != nil {
+	if query := uq.withUsertopicedge; query != nil {
 		edgeids := make([]driver.Value, len(nodes))
 		byid := make(map[int]*User)
 		nids := make(map[int]map[*User]struct{})
 		for i, node := range nodes {
 			edgeids[i] = node.ID
 			byid[node.ID] = node
-			node.Edges.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle = []*Picture{}
+			node.Edges.Usertopicedge = []*Picture{}
 		}
 		query.Where(func(s *sql.Selector) {
-			joinT := sql.Table(user.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandleTable)
-			s.Join(joinT).On(s.C(picture.FieldID), joinT.C(user.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandlePrimaryKey[1]))
-			s.Where(sql.InValues(joinT.C(user.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandlePrimaryKey[0]), edgeids...))
+			joinT := sql.Table(user.UsertopicedgeTable)
+			s.Join(joinT).On(s.C(picture.FieldID), joinT.C(user.UsertopicedgePrimaryKey[1]))
+			s.Where(sql.InValues(joinT.C(user.UsertopicedgePrimaryKey[0]), edgeids...))
 			columns := s.SelectedColumns()
-			s.Select(joinT.C(user.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandlePrimaryKey[0]))
+			s.Select(joinT.C(user.UsertopicedgePrimaryKey[0]))
 			s.AppendSelect(columns...)
 			s.SetDistinct(false)
 		})
@@ -423,10 +423,10 @@ func (uq *UserQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*User, e
 		for _, n := range neighbors {
 			nodes, ok := nids[n.ID]
 			if !ok {
-				return nil, fmt.Errorf(`unexpected "user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle" node returned %v`, n.ID)
+				return nil, fmt.Errorf(`unexpected "usertopicedge" node returned %v`, n.ID)
 			}
 			for kn := range nodes {
-				kn.Edges.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle = append(kn.Edges.UserToPictureEdgeVeryLongNameLongerThanTheAmountThatPostgresCanReallyHandle, n)
+				kn.Edges.Usertopicedge = append(kn.Edges.Usertopicedge, n)
 			}
 		}
 	}

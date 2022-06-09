@@ -36,7 +36,7 @@ func createDiff() {
 		log.Fatalf("failed creating atlas migration directory: %v", err)
 	}
 	// Write migration diff.
-	err = client.Schema.Diff(ctx, schema.WithDir(dir), schema.WithFormatter(sqltool.GolangMigrateFormatter))
+	err = client.Schema.Diff(ctx, schema.WithDir(dir), schema.WithGlobalUniqueID(true), schema.WithFormatter(sqltool.GolangMigrateFormatter))
 	if err != nil {
 		log.Fatalf("failed creating schema resources: %v", err)
 	}

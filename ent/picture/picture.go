@@ -14,7 +14,7 @@ const (
 	// Table holds the table name of the picture in the database.
 	Table = "pictures"
 	// PictureTable is the table that holds the picture relation/edge. The primary key declared below.
-	PictureTable = "user_user_to_picture_edge_very_long_name_longer_than_the_amount_that_postgres_can_really_handle"
+	PictureTable = "user_usertopicedge"
 	// PictureInverseTable is the table name for the User entity.
 	// It exists in this package in order to avoid circular dependency with the "user" package.
 	PictureInverseTable = "users"

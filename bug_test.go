@@ -20,7 +20,7 @@ import (
 func TestBugPostgres(t *testing.T) {
 	for version, port := range map[string]int{"12": 5432} {
 		t.Run(version, func(t *testing.T) {
-			client := enttest.Open(t, dialect.Postgres, fmt.Sprintf("host=localhost port=%d user=postgres dbname=test password=pass sslmode=disable", port))
+			client := enttest.Open(t, dialect.Postgres, fmt.Sprintf("host=localhost port=%d user=postgres dbname=test password=pass sslmode=disable", port), enttest.WithMigrateOptions(schema.WithGlobalUniqueID(true)))
 			defer client.Close()
 			test(t, client)
 		})

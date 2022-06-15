@@ -6,35 +6,22 @@ import (
 	"entgo.io/ent/schema/field"
 )
 
-const (
-	UserToPictureEdge = "usertopicedge"
-	pictureEdge       = "picture"
-)
-
-// User holds the schema definition for the User entity.
+// Picture holds the schema definition for the Picture entity.
 type Picture struct {
 	ent.Schema
 }
 
-// Fields of the User.
+// Fields of the Picture.
 func (Picture) Fields() []ent.Field {
 	return []ent.Field{
 		field.String("url"),
 	}
 }
 
-//func (Picture) Indexes() []ent.Index {
-//	return []ent.Index{
-//		index.Edges(pictureEdge),
-//		index.Fields("key").
-//			Edges(pictureEdge).
-//			Unique(),
-//	}
-//}
-
-// Edges of the User.
+// Edges of the Picture.
 func (Picture) Edges() []ent.Edge {
 	return []ent.Edge{
-		edge.From(pictureEdge, User.Type).Ref(UserToPictureEdge),
+		edge.From("user", User.Type).
+			Ref("pic"),
 	}
 }

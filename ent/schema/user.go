@@ -14,7 +14,6 @@ type User struct {
 // Fields of the User.
 func (User) Fields() []ent.Field {
 	return []ent.Field{
-		field.Int("age"),
 		field.String("name"),
 	}
 }
@@ -22,6 +21,6 @@ func (User) Fields() []ent.Field {
 // Edges of the User.
 func (User) Edges() []ent.Edge {
 	return []ent.Edge{
-		edge.To(UserToPictureEdge, Picture.Type),
+		edge.To("pic", Picture.Type),
 	}
 }
